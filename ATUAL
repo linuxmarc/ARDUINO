@@ -1,0 +1,290 @@
+int sensorPin8  = A0;
+int sensorPin9  = A1;
+int sensorPin10 = A2;
+int sensorPin11 = A3;
+int sensorPin12 = A4;
+int sensorPin13 = A5;
+
+int sensorValue8  = 0;
+int sensorValue9  = 0;
+int sensorValue10 = 0;
+int sensorValue11 = 0;
+int sensorValue12 = 0;
+int sensorValue13 = 0;
+
+int ledPin8  = 8;
+int ledPin9  = 9;
+int ledPin10 = 10;
+int ledPin11 = 11;
+int ledPin12 = 12;
+int ledPin13 = 13;
+
+int botao2 = 2;
+int botao3 = 3;
+int botao4 = 4;
+int botao5 = 5;
+int botao6 = 6;
+int botao7 = 7;
+
+int estadoBotao2 = 0;
+int estadoBotao3 = 0;
+int estadoBotao4 = 0;
+int estadoBotao5 = 0;
+int estadoBotao6 = 0;
+int estadoBotao7 = 0;
+
+int   OFFSET = 10;
+int   OFFSET1 = 0;
+int   OFFSET2 = 0;
+int   OFFSET3 = 0;
+int   OFFSET4 = 0;
+int   OFFSET5 = 0;
+int   OFFSET6 = 0;
+
+int var1 = 0;
+int var2 = 0;
+int var3 = 0;
+int var4 = 0;
+int var5 = 0;
+int var6 = 0;
+
+int tempo =0;
+
+void setup() {
+Serial.begin(115200); 
+
+pinMode(ledPin8,  OUTPUT);
+pinMode(ledPin9,  OUTPUT);
+pinMode(ledPin10, OUTPUT);
+pinMode(ledPin11, OUTPUT);
+pinMode(ledPin12, OUTPUT);
+pinMode(ledPin13, OUTPUT);
+
+pinMode(botao2,INPUT); 
+pinMode(botao3,INPUT); 
+pinMode(botao4,INPUT); 
+pinMode(botao5,INPUT); 
+pinMode(botao6,INPUT); 
+pinMode(botao7,INPUT); 
+Serial.write(27); 
+Serial.print("[2J"); // clear screen   
+}
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+void loop() {
+// le sensores e grava na variavelarduino botao led
+
+sensorValue8  = analogRead(sensorPin8);
+sensorValue9  = analogRead(sensorPin9);
+sensorValue10 = analogRead(sensorPin10);
+sensorValue11 = analogRead(sensorPin11);
+sensorValue12 = analogRead(sensorPin12);
+sensorValue13 = analogRead(sensorPin13);
+
+estadoBotao2 = digitalRead(botao2);          
+estadoBotao3 = digitalRead(botao3);          
+estadoBotao4 = digitalRead(botao4);          
+estadoBotao5 = digitalRead(botao5);          
+estadoBotao6 = digitalRead(botao6);          
+estadoBotao7 = digitalRead(botao7);          
+
+
+tempo = tempo + 1; 
+if (tempo > 25){
+Serial.write(27); 
+Serial.print("[2J"); // clear screen    
+tempo=0;
+}
+
+
+
+//inicio 1
+if (estadoBotao2 == HIGH)
+{
+if (var1 < OFFSET)
+{if (OFFSET1 < analogRead(sensorPin8))
+{OFFSET1 = analogRead(sensorPin8);
+}
+var1++;
+} 
+}else {
+var1 = 0;
+OFFSET1 = 0;
+}
+
+//inicio 2
+if (estadoBotao3 == HIGH)
+{
+if(var2 < OFFSET){
+if (OFFSET2 < analogRead(sensorPin9))
+{OFFSET2 = analogRead(sensorPin9);
+}
+var2++;
+} 
+}else {
+var2 = 0;
+OFFSET2 = 0;
+}
+//inicio 3
+if (estadoBotao4 == HIGH)
+{ 
+if(var3 < OFFSET){
+if (OFFSET3 < analogRead(sensorPin10))
+{OFFSET3 = analogRead(sensorPin10);
+}
+var3++;
+} 
+}else {
+var3 = 0;
+OFFSET3 = 0;
+}
+//inicio 4
+if (estadoBotao5 == HIGH)
+{
+if(var4 < OFFSET){
+if (OFFSET4 < analogRead(sensorPin11))
+{OFFSET4 = analogRead(sensorPin11);
+}
+var4++;
+} 
+}else {
+var4 = 0;
+OFFSET4 = 0;
+}
+//inicio 5
+if (estadoBotao6 == HIGH)
+{
+if(var5 < OFFSET){
+if (OFFSET5 < analogRead(sensorPin12))
+{OFFSET5 = analogRead(sensorPin12);
+}
+var5++;
+} 
+}else {
+var5 = 0;
+OFFSET5 = 0;
+}
+//inicio 6
+if (estadoBotao7 == HIGH)
+{
+if(var6 < OFFSET){
+if (OFFSET6 < analogRead(sensorPin13))
+{OFFSET6 = analogRead(sensorPin13);
+}
+var6++;
+} 
+}else {
+var6 = 0;
+OFFSET6 = 0;
+}
+/*Serial.print("|");
+Serial.print('"\"');
+Serial.print("--");
+Serial.print(134,ASC2);
+Serial.print("|");
+
+Serial.println("'\'");
+*/
+//display_Running_Sketch();
+display_srcfile_details();
+Serial.print(freeRam());
+Serial.println(" RAM livre");
+Serial.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+if (estadoBotao2 == HIGH){Serial.println("Entrada pino 2  up");} else {Serial.println("Entrada pino 2 DOW");}
+if (estadoBotao3 == HIGH){Serial.println("Entrada pino 3  up");} else {Serial.println("Entrada pino 3 DOW");}
+if (estadoBotao4 == HIGH){Serial.println("Entrada pino 4  up");} else {Serial.println("Entrada pino 4 DOW");}
+if (estadoBotao5 == HIGH){Serial.println("Entrada pino 5  up");} else {Serial.println("Entrada pino 5 DOW");}
+if (estadoBotao6 == HIGH){Serial.println("Entrada pino 6  up");} else {Serial.println("Entrada pino 6 DOW");}
+if (estadoBotao7 == HIGH){Serial.println("Entrada pino 7  up");} else {Serial.println("Entrada pino 7 DOW");}
+
+Serial.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+//000000000000000000000000000000000000000008
+if (sensorValue8 > OFFSET1 && estadoBotao2 == HIGH )
+{digitalWrite(ledPin8, HIGH); Serial.println("Saida pino 8   up");} else {digitalWrite(ledPin8, LOW); Serial.println("Saida pino 8  OFF");}
+if (sensorValue9 > OFFSET2 && estadoBotao3 == HIGH )
+{digitalWrite(ledPin9, HIGH); Serial.println("Saida pino 9   up");} else {digitalWrite(ledPin9, LOW); Serial.println("Saida pino 9  OFF");}
+if (sensorValue10 > OFFSET3 && estadoBotao4 == HIGH )
+{digitalWrite(ledPin10, HIGH); Serial.println("Saida pino 10  up");} else {digitalWrite(ledPin10, LOW); Serial.println("Saida pino 10 OFF");}
+if (sensorValue11 > OFFSET4 && estadoBotao5 == HIGH )
+{digitalWrite(ledPin11, HIGH); Serial.println("Saida pino 11  up");} else {digitalWrite(ledPin11, LOW); Serial.println("Saida pino 11 OFF");}
+if (sensorValue12 > OFFSET5 && estadoBotao6 == HIGH )
+{digitalWrite(ledPin12, HIGH); Serial.println("Saida pino 12  up");} else {digitalWrite(ledPin12, LOW); Serial.println("Saida pino 12 OFF");}
+if (sensorValue13 > OFFSET6 && estadoBotao7 == HIGH )
+{digitalWrite(ledPin13, HIGH); Serial.println("Saida pino 13  up");} else {digitalWrite(ledPin13, LOW); Serial.println("Saida pino 13 OFF");}
+Serial.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+Serial.print("OFFSET 1 Max = "); Serial.print(OFFSET1);Serial.println("    |");
+
+Serial.print("OFFSET 2 Max = "); Serial.print(OFFSET2);Serial.println("    |");
+
+Serial.print("OFFSET 3 Max = "); Serial.print(OFFSET3);Serial.println("    |");
+
+Serial.print("OFFSET 4 Max = "); Serial.print(OFFSET4);Serial.println("    |");
+
+Serial.print("OFFSET 5 Max = "); Serial.print(OFFSET5);Serial.println("    |");
+
+Serial.print("OFFSET 6 Max = "); Serial.print(OFFSET6);Serial.println("    |");
+
+Serial.write(27); // ESC 
+Serial.print("[H"); // cursor to home 
+
+}
+/*
+void display_Running_Sketch (void){
+  String the_path = __FILE__;
+  int slash_loc = the_path.lastIndexOf('/');
+  String the_cpp_name = the_path.substring(slash_loc+1);
+  int dot_loc = the_cpp_name.lastIndexOf('.');
+  String the_sketchname = the_cpp_name.substring(0, dot_loc);
+
+  Serial.print("\nArduino is running Sketch: ");
+  Serial.println(the_sketchname);
+  Serial.print("Compiled on: ");
+  Serial.print(__DATE__);
+  Serial.print(" at ");
+  Serial.print(__TIME__);
+  Serial.print("\n\r");
+}
+*/
+
+int pgm_lastIndexOf(uint8_t c, const char * p)
+{
+  int last_index = -1; // -1 indicates no match
+  uint8_t b;
+  for(int i = 0; true; i++) {
+    b = pgm_read_byte(p++);
+    if (b == c)
+      last_index = i;
+    else if (b == 0) break;
+  }
+  return last_index;
+}
+
+void display_srcfile_details(void){
+  const char *the_path = PSTR(__FILE__);           // save RAM, use flash to hold __FILE__ instead
+
+  int slash_loc = pgm_lastIndexOf('/',the_path); // index of last '/' 
+  if (slash_loc < 0) slash_loc = pgm_lastIndexOf('\\',the_path); // or last '\' (windows, ugh)
+
+  int dot_loc = pgm_lastIndexOf('.',the_path);   // index of last '.'
+  if (dot_loc < 0) dot_loc = pgm_lastIndexOf(0,the_path); // if no dot, return end of string
+
+  Serial.print(F("\nSketch: "));
+
+  for (int i = slash_loc+1; i < dot_loc; i++) {
+    uint8_t b = pgm_read_byte(&the_path[i]);
+    if (b != 0) Serial.print((char) b);
+    else break;
+  }
+
+  Serial.print(F("\n\rCompiled on: "));
+  Serial.print(__DATE__);
+  Serial.print(" at ");
+  Serial.print(__TIME__);
+  Serial.print("\n\r");
+}
+
+int freeRam() {
+  extern int __heap_start,*__brkval;
+  int v;
+  return (int)&v - (__brkval == 0 ? (int)&__heap_start : (int) __brkval);  
+}
